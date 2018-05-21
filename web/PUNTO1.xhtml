@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:panel id="pnlPalabras" header="Listado de Palaras" footer="PV 2018 punto1">
+            <h:form id="frmPalabra">
+                <p:panelGrid id="tblPalabras" columns="2">
+                    <p:outputLabel for="txtIngreso" value="Ingrese"/>
+                    <p:inputText id="txtIngreso" value="#{palabraFormBean.palabras}"/>
+                </p:panelGrid>
+                <h:panelGrid id="tblBotones" columns="3">
+                    <p:commandButton id="botonAgregar" 
+                                    value="Agregar" 
+                                    actionListener="#{palabraFormBean.agregarPalabra()}" 
+                                    update="dtTblLista"/>
+                    <p:commandButton id="botonBorrar"
+                                     value="Borrar"
+                                     actionListener="#{palabraFormBean.borrarlistado()}"
+                                     update="dtTblLista"/>
+                    <p:commandButton id="botonOrdenar"
+                                     value="Ordenar"
+                                     actionListener="#{palabraFormBean.ordenarLista()}"
+                                     update="dtTblLista"/>
+               </h:panelGrid>
+                <p:panelGrid id="tblMuestraPalabras" columns="1">
+                    <p:dataTable id="dtTblLista" 
+                                value="#{palabraFormBean.listaPalabras.cualquiera}" 
+                                var="Pal"
+                                emptyMessage="No hay palabras">
+                        <p:column headerText="Lista de palabras">
+                            <p:outputLabel value="#{Pal}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panelGrid>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
+
